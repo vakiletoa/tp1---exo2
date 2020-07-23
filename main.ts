@@ -1,23 +1,29 @@
 input.onButtonPressed(Button.A, function () {
-    led.unplot(0, posY)
-    posY += 1
+    led.unplot(posX, posY)
+    posX += -1
+    if (posX < 0) {
+        posX = 4
+    }
     led.plot(posX, posY)
 })
 input.onButtonPressed(Button.B, function () {
-    led.unplot(0, posY)
-    posY = 0
-    led.plot(0, posY)
+    led.unplot(posX, posY)
+    posX += 1
+    if (posX > 4) {
+        posX = 0
+    }
+    led.plot(posX, posY)
 })
 let posX = 0
 let posY = 0
 let direction = 0
 posY = 0
 posX = 0
-led.plot(0, posY)
+led.plot(posX, posY)
 basic.forever(function () {
-    led.unplot(0, posY)
+    led.unplot(posX, posY)
     posY += direction
-    led.plot(0, posY)
+    led.plot(posX, posY)
     if (posY >= 4) {
         direction = -1
     } else if (posY <= 0) {
